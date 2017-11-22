@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -12,7 +13,7 @@ import utilities.TestAutomationGlobalInit;
 
 public class Authentication extends TestAgent {
 
-	WebDriver driver;
+	
 	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	
 	public Authentication() {
@@ -20,6 +21,7 @@ public class Authentication extends TestAgent {
 	}
 	
 	public void Login(WebDriver driver,String testname){
+		try{
 		this.driver=driver;
 		driver.get(init.GetSignInUrl());
 		WebElement login=GetLoginElement();
@@ -28,14 +30,11 @@ public class Authentication extends TestAgent {
         Actions seriesOfActions = builder.sendKeys(login, init.GetEmail()).sendKeys(password,init.GetPassword()).sendKeys(Keys.ENTER);
         seriesOfActions.perform();
         Sleep(3000);
-		System.out.println(driver.getCurrentUrl());
-		if(driver.getCurrentUrl().contains(init.GetSignedInUrl())){
-			init.AddToResults(testname, true);
-			System.out.println("Hi");
-		}else{
-			init.AddToResults(testname, false);
-			System.out.println("Bye");
+		}catch(WebDriverException e){
+			e.printStackTrace();
 		}
+		RegisterResult(driver.getCurrentUrl().contains(init.GetSignedInUrl()),testname);
+		
 	}
 	
 	private WebElement GetLoginElement(){

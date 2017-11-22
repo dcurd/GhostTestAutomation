@@ -1,10 +1,16 @@
 package tests;
 
+import org.openqa.selenium.WebDriver;
+
+import utilities.TestAutomationGlobalInit;
+
 public class TestAgent {
 
+	WebDriver driver;
 	public TestAgent() {
 		// TODO Auto-generated constructor stub
 	}
+	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	
 	public void Sleep(long value){
 		try {
@@ -13,6 +19,10 @@ public class TestAgent {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void RegisterResult(Boolean result, String testname){		
+		init.AddToResults(testname, result);		
 	}
 
 	public static void main(String[] args) {

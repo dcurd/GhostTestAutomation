@@ -1,15 +1,8 @@
 package metatests;
 
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-import tests.Authentication;
-import tests.LogoutOfBlog;
+import tests.*;
 import utilities.TestAutomationGlobalInit;
 
 public class MyTest {
@@ -18,6 +11,10 @@ public class MyTest {
 	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	Authentication auth = new Authentication();
 	LogoutOfBlog logout= new LogoutOfBlog();
+	CreatePost create= new CreatePost();
+	EditPost edit= new EditPost();
+	DeletePost delete= new DeletePost();
+	
 	public MyTest() {
 		System.setProperty("webdriver.chrome.driver", "..\\GhostTestAutomation\\driver\\chromedriver.exe");
 		driver =  new ChromeDriver();		

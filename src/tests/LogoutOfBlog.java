@@ -3,17 +3,16 @@ package tests;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
+
 
 import utilities.TestAutomationGlobalInit;
 
 public class LogoutOfBlog extends TestAgent {
 
-	WebDriver driver;
 	WebElement logout;
 	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	
@@ -22,6 +21,8 @@ public class LogoutOfBlog extends TestAgent {
 	}
 	
 	public void Logout(WebDriver driver,String testname){
+		try{
+		this.driver=driver;
 		List<WebElement>listOfElements=this.driver.findElements(By.cssSelector("header"));
 		
 		for(WebElement e : listOfElements){
@@ -33,13 +34,11 @@ public class LogoutOfBlog extends TestAgent {
 				break;
 			}
 		}
-		if(driver.getCurrentUrl().contains(init.GetSignInUrl())){
-			init.AddToResults(testname, true);
-			System.out.println("Hi");
-		}else{
-			init.AddToResults(testname, false);
-			System.out.println("Bye");
+		}catch(WebDriverException e){
+			e.printStackTrace();
 		}
+		RegisterResult(driver.getCurrentUrl().contains(init.GetSignInUrl()),testname);
+		
 		
 		
 	}
