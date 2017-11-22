@@ -23,8 +23,8 @@ public class MyTest {
 	
 	public void run(){
 		GoToSignInPage();
-		/*CreatePost();
-		EditPost();
+		CreatePost();
+		/*EditPost();
 		AddHtmlToPost();
 		AddImageToPost();
 		AddMarkupsToPost();
@@ -39,7 +39,7 @@ public class MyTest {
 	}
 	
 	private void CreatePost(){
-		
+		create.Create(this.driver, "CreatePost()");
 	}
 	
 	private void EditPost(){

@@ -15,9 +15,11 @@ public class TestAutomationGlobalInit {
 	String signinurl="";
 	String signedinurl="";
 	String samplehtml="";
+	String header="";
 	String post="";
 	String email="";
 	String password="";
+	
 	Properties props = new Properties();
 	private static TestAutomationGlobalInit instance =null;
 	DBUtils dbUtils=DBUtils.getInstance();
@@ -70,6 +72,8 @@ public class TestAutomationGlobalInit {
 		SetRegularUrl(props.getProperty("Selenium-Url"));
 		SetEmail(props.getProperty("Selenium-Email"));
 		SetPassword(props.getProperty("Selenium-Password"));
+		SetHeader(props.getProperty("Selenium-SampleHeader"));
+		SetPost(props.getProperty("Selenium-SamplePost"));
 	}
 	
 	public Map<String,Boolean> GetTestResults(){
@@ -79,7 +83,20 @@ public class TestAutomationGlobalInit {
 	public void AddToResults(String key, Boolean value){
 		testResults.put(key, value);
 	}
+	public String GetHeader(){
+		return this.header;
+	}
 	
+	private void SetHeader(String header){
+		this.header=header;
+	}
+	public String GetPost(){
+		return this.post;
+	}
+	
+	private void SetPost(String post){
+		this.post=post;
+	}
 	public String GetEmail(){
 		return this.email;
 	}

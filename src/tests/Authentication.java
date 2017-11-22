@@ -33,7 +33,7 @@ public class Authentication extends TestAgent {
 		}catch(WebDriverException e){
 			e.printStackTrace();
 		}
-		RegisterResult(driver.getCurrentUrl().contains(init.GetSignedInUrl()),testname);
+		RegisterResult(!driver.getCurrentUrl().contains("signin"),testname);
 		
 	}
 	

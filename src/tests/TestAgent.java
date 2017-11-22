@@ -8,7 +8,6 @@ public class TestAgent {
 
 	WebDriver driver;
 	public TestAgent() {
-		// TODO Auto-generated constructor stub
 	}
 	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	
@@ -21,7 +20,8 @@ public class TestAgent {
 		}
 	}
 	
-	public void RegisterResult(Boolean result, String testname){		
+	public void RegisterResult(Boolean result, String testname){
+		System.out.println(result);
 		init.AddToResults(testname, result);		
 	}
 

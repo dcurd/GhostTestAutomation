@@ -31,6 +31,7 @@ public class LogoutOfBlog extends TestAgent {
 				e.click();
 				Sleep(2000);
 				this.driver.findElement(By.xpath("//a[@href='/ghost/signout/']")).click();
+				Sleep(2000);
 				break;
 			}
 		}
