@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import tests.Authentication;
+import tests.LogoutOfBlog;
 import utilities.TestAutomationGlobalInit;
 
 public class MyTest {
@@ -16,6 +17,7 @@ public class MyTest {
 	WebDriver driver;
 	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	Authentication auth = new Authentication();
+	LogoutOfBlog logout= new LogoutOfBlog();
 	public MyTest() {
 		System.setProperty("webdriver.chrome.driver", "..\\GhostTestAutomation\\driver\\chromedriver.exe");
 		driver =  new ChromeDriver();		
@@ -24,11 +26,12 @@ public class MyTest {
 	
 	public void run(){
 		GoToSignInPage();
-		CreatePost();
+		/*CreatePost();
 		EditPost();
 		AddHtmlToPost();
 		AddImageToPost();
 		AddMarkupsToPost();
+		DeletePost();*/
 		LogoutOfBlog();
 		driver.close();
 	}
@@ -63,7 +66,7 @@ public class MyTest {
 	}
 	
 	private void LogoutOfBlog(){
-		
+		logout.Logout(driver,"LogoutOfBlog()");
 	}
 	
 
