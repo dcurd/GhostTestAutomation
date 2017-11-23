@@ -27,8 +27,8 @@ public class MyTest {
 		/*EditPost();
 		AddHtmlToPost();
 		AddImageToPost();
-		AddMarkupsToPost();
-		DeletePost();*/
+		AddMarkupsToPost();*/
+		DeletePost();
 		LogoutOfBlog();
 		driver.close();
 	}
@@ -47,7 +47,7 @@ public class MyTest {
 	}
 	
 	private void DeletePost(){
-		
+		delete.Delete(this.driver, "DeletePost()");
 	}
 	
 	private void AddHtmlToPost(){
