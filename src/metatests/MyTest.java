@@ -24,10 +24,11 @@ public class MyTest {
 	public void run(){
 		GoToSignInPage();
 		CreatePost();
-		/*EditPost();
+		//need to check for the ones below
+		EditPost();
 		AddHtmlToPost();
 		AddImageToPost();
-		AddMarkupsToPost();*/
+		/*AddMarkupsToPost();*/
 		DeletePost();
 		LogoutOfBlog();
 		driver.close();
@@ -43,23 +44,24 @@ public class MyTest {
 	}
 	
 	private void EditPost(){
+		edit.Edit(this.driver, "EditPost()");
+	}
+	
+		
+	private void AddHtmlToPost(){
+		edit.EditHtml(this.driver, "AddHtmlToPost()");
+	}
+	
+	private void AddImageToPost(){
+		edit.EditImage(this.driver, "AddImageToPost()");
+	}
+	
+	private void AddMarkupsToPost(){
 		
 	}
 	
 	private void DeletePost(){
 		delete.Delete(this.driver, "DeletePost()");
-	}
-	
-	private void AddHtmlToPost(){
-		
-	}
-	
-	private void AddImageToPost(){
-		
-	}
-	
-	private void AddMarkupsToPost(){
-		
 	}
 	
 	private void LogoutOfBlog(){

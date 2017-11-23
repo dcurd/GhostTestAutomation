@@ -22,6 +22,7 @@ public class CreatePost extends TestAgent{
 	public void Create(WebDriver driver,String testname){
 		this.driver=driver;
 		try{
+			init.SetWorkingUrl(this.driver.getCurrentUrl());
 			this.driver.findElement(By.cssSelector("a[href='/ghost/editor/']")).click();
 			this.driver.findElement(By.id("entry-title")).click();
 			this.driver.findElement(By.id("entry-title")).sendKeys(init.GetHeader());

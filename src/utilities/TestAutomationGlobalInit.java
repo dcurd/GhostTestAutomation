@@ -19,7 +19,9 @@ public class TestAutomationGlobalInit {
 	String post="";
 	String email="";
 	String password="";
-	
+	String workingurl="";
+	String html="";
+	String image="";
 	Properties props = new Properties();
 	private static TestAutomationGlobalInit instance =null;
 	DBUtils dbUtils=DBUtils.getInstance();
@@ -72,8 +74,10 @@ public class TestAutomationGlobalInit {
 		SetRegularUrl(props.getProperty("Selenium-Url"));
 		SetEmail(props.getProperty("Selenium-Email"));
 		SetPassword(props.getProperty("Selenium-Password"));
-		SetHeader(props.getProperty("Selenium-SampleHeader"));
+		SetHeader(props.getProperty("Selenium-SampleHeader")+System.currentTimeMillis());
 		SetPost(props.getProperty("Selenium-SamplePost"));
+		SetHtml(props.getProperty("Selenium-SampleHtml"));
+		SetImage(props.getProperty("Selenium-Image"));
 	}
 	
 	public Map<String,Boolean> GetTestResults(){
@@ -82,6 +86,30 @@ public class TestAutomationGlobalInit {
 	
 	public void AddToResults(String key, Boolean value){
 		testResults.put(key, value);
+	}
+	
+	public String GetImage(){
+		return this.image;
+	}
+	
+	public void SetImage(String image){
+		this.image=image;
+	}
+	
+	public String GetHtml(){
+		return this.html;
+	}
+	
+	public void SetHtml(String html){
+		this.html=html;
+	}
+	
+	public String GetWorkingUrl(){
+		return this.workingurl;
+	}
+	
+	public void SetWorkingUrl(String workingurl){
+		this.workingurl=workingurl;
 	}
 	public String GetHeader(){
 		return this.header;
