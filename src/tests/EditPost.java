@@ -15,12 +15,13 @@ public class EditPost extends TestAgent {
 	
 	public boolean Edit(WebDriver driver, String testname){
 		try{
+		//post-content
 		this.driver=driver;
 		this.driver.findElement(By.cssSelector("textarea")).clear();
 		this.driver.findElement(By.cssSelector("textarea")).click();
-		this.driver.findElement(By.cssSelector("textarea")).sendKeys("HI");		
+		this.driver.findElement(By.cssSelector("textarea")).sendKeys(init.GetEdit());		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
-		return true;
+		return GoToBlogPostPageCss(driver,".post-content",init.GetEdit());
 		}catch(WebDriverException e){
 			e.printStackTrace();
 			return false;
@@ -29,12 +30,15 @@ public class EditPost extends TestAgent {
 	
 	public boolean EditHtml(WebDriver driver, String testname){
 		try{
+			//type bestcompany
 		this.driver=driver;
+		GoToWorkingUrl(this.driver);
 		this.driver.findElement(By.cssSelector("textarea")).clear();
 		this.driver.findElement(By.cssSelector("textarea")).click();
+		init.SetHtml(init.GetHtml().replace("%%%%", init.GetHtmlName()));
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(init.GetHtml());		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
-		return true;
+		return RegisterResult(GoToBlogPostPageCss(this.driver,".post-content","text",init.GetHtmlName()),testname);
 	}catch(WebDriverException e){
 		e.printStackTrace();
 		return false;
@@ -43,7 +47,9 @@ public class EditPost extends TestAgent {
 	
 	public boolean EditImage(WebDriver driver, String testname){
 		try{
+		//style="background-image: url(http://www.azquotes.com/picture-quotes/quote-the-place-god-calls-you-to-is-the-place-where-your-deep-gladness-and-the-world-s-deep-frederick-buechner-37-96-31.jpg)"
 		this.driver=driver;
+		GoToWorkingUrl(this.driver);
 		this.driver.findElement(By.cssSelector("textarea")).clear();
 		this.driver.findElement(By.cssSelector("textarea")).click();
 		this.driver.findElement(By.cssSelector(".post-settings")).click();
@@ -53,7 +59,7 @@ public class EditPost extends TestAgent {
 		this.driver.findElement(By.cssSelector(".btn.btn-blue.gh-input")).click();
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
-		return true;
+		return RegisterResult(GoToBlogPostPageCss(this.driver,".main-header.post-head","background-image",init.GetImage()),testname);
 		}catch(WebDriverException e){
 			e.printStackTrace();
 			return false;
@@ -62,12 +68,15 @@ public class EditPost extends TestAgent {
 	
 	public boolean EditMarkup(WebDriver driver, String testname){
 	try{
+		//del tag
 		this.driver=driver;
+		GoToWorkingUrl(this.driver);
 		this.driver.findElement(By.cssSelector("textarea")).clear();
 		this.driver.findElement(By.cssSelector("textarea")).click();
-		this.driver.findElement(By.cssSelector("textarea")).sendKeys("HI");		
+		this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
+		this.driver.findElement(By.cssSelector("textarea")).sendKeys("~~"+init.GetMarkdown()+"~~");		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
-		return true;
+		return RegisterResult(GoToBlogPostPageTag(driver,"del",init.GetMarkdown()),testname);
 	}catch(WebDriverException e){
 		e.printStackTrace();
 		return false;

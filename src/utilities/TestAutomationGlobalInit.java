@@ -12,6 +12,7 @@ public class TestAutomationGlobalInit {
 	
 	String propertieslocation= "/testautomation.properties";
 	String url="";
+	String blogposturl="";
 	String signinurl="";
 	String signedinurl="";
 	String samplehtml="";
@@ -22,6 +23,9 @@ public class TestAutomationGlobalInit {
 	String workingurl="";
 	String html="";
 	String image="";
+	String edit="";
+	String markdown="";
+	String htmlname="";
 	Properties props = new Properties();
 	private static TestAutomationGlobalInit instance =null;
 	DBUtils dbUtils=DBUtils.getInstance();
@@ -78,6 +82,9 @@ public class TestAutomationGlobalInit {
 		SetPost(props.getProperty("Selenium-SamplePost"));
 		SetHtml(props.getProperty("Selenium-SampleHtml"));
 		SetImage(props.getProperty("Selenium-Image"));
+		SetEdit(props.getProperty("Selenium-SampleEditPost"));
+		SetMarkdown(props.getProperty("Selenium-Markup"));
+		SetHtmlName(props.getProperty("Selenium-SampleHtmlName"));
 	}
 	
 	public Map<String,Boolean> GetTestResults(){
@@ -93,6 +100,22 @@ public class TestAutomationGlobalInit {
 		testResults.put(key, value);
 	}
 	
+	public String GetMarkdown(){
+		return this.markdown;
+	}
+	
+	public void SetMarkdown(String markdown){
+		this.markdown=markdown;
+	}
+	
+	public String GetEdit(){
+		return this.edit;
+	}
+	
+	public void SetEdit(String edit){
+		this.edit=edit;
+	}
+	
 	public String GetImage(){
 		return this.image;
 	}
@@ -101,12 +124,28 @@ public class TestAutomationGlobalInit {
 		this.image=image;
 	}
 	
+	public String GetHtmlName(){
+		return this.htmlname;
+	}
+	
+	public void SetHtmlName(String htmlnaem){
+		this.htmlname=htmlname;
+	}
+	
 	public String GetHtml(){
 		return this.html;
 	}
 	
 	public void SetHtml(String html){
 		this.html=html;
+	}
+	
+	public String GetBlogPostUrl(){
+		return this.blogposturl;
+	}
+	
+	public void SetBlogPostUrl(String blogposturl){
+		this.blogposturl=blogposturl;
 	}
 	
 	public String GetWorkingUrl(){

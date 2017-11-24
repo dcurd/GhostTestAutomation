@@ -16,6 +16,7 @@ public class DeletePost extends TestAgent {
 	
 	public boolean Delete(WebDriver driver,String testname){
 		this.driver=driver;
+		GoToWorkingUrl(this.driver);
 		try{
 			//dropdown-menu dropdown-triangle-bottom-right
 			this.driver.findElement(By.cssSelector(".btn.btn-sm.btn-blue.dropdown-toggle.up.ember-view.closed")).click();

@@ -37,15 +37,15 @@ public class MyTest {
 	
 	private boolean ListOfTests(String testname){
 		switch(testname){
-		case "ConfirmBlog": return ConfirmBlog();
-		case "GoToSignInPage": return GoToSignInPage();
-		case "CreatePost": return CreatePost();
-		case "EditPost": return EditPost();
-		case "AddHtmlToPost": return AddHtmlToPost();
-		case "AddImageToPost": return AddImageToPost();
-		case "AddMarkupsToPost": return AddMarkupsToPost();
-		case "DeletePost": return DeletePost() ;
-		case "LogoutOfBlog": LogoutOfBlog();
+		case "ConfirmBlog": return ConfirmBlog(testname);
+		case "GoToSignInPage": return GoToSignInPage(testname);
+		case "CreatePost": return CreatePost(testname);
+		case "EditPost": EditPost(testname); return true;
+		case "AddHtmlToPost": AddHtmlToPost(testname); return true;
+		case "AddImageToPost": AddImageToPost(testname); return true;
+		case "AddMarkupsToPost": AddMarkupsToPost(testname);return true;
+		case "DeletePost": return DeletePost(testname) ;
+		case "LogoutOfBlog": LogoutOfBlog(testname);
 		                     return false;
 		
 		}
@@ -74,42 +74,43 @@ public class MyTest {
 					
 	}
 	
-	private boolean ConfirmBlog(){
-		return confirm.Confirm(this.driver,"ConfirmBlog");			
+	private boolean ConfirmBlog(String testname){
+		return confirm.Confirm(this.driver,testname);			
 	}
 	
 	
-	private boolean GoToSignInPage(){
-		return auth.Login(this.driver,"GoToSignInPage");			
+	private boolean GoToSignInPage(String testname){
+		return auth.Login(this.driver,testname);			
 	}
 	
-	private boolean CreatePost(){
-		return create.Create(this.driver, "CreatePost");
+	private boolean CreatePost(String testname){
+		return create.Create(this.driver, testname);
 	}
 	
-	private boolean EditPost(){
-		return edit.Edit(this.driver, "EditPost");
+	private boolean EditPost(String testname){
+		return edit.Edit(this.driver, testname);
 	}
 	
 		
-	private boolean AddHtmlToPost(){
-		return edit.EditHtml(this.driver, "AddHtmlToPost");
+	private boolean AddHtmlToPost(String testname){
+		return edit.EditHtml(this.driver, testname);
 	}
 	
-	private boolean AddImageToPost(){
-		return edit.EditImage(this.driver, "AddImageToPost");
+	private boolean AddImageToPost(String testname){
+		return edit.EditImage(this.driver, testname);
 	}
 	
-	private boolean AddMarkupsToPost(){
-		return false;
+	private boolean AddMarkupsToPost(String testname){
+		return edit.EditMarkup(this.driver, testname);
+		
 	}
 	
-	private boolean DeletePost(){
-		return delete.Delete(this.driver, "DeletePost");
+	private boolean DeletePost(String testname){
+		return delete.Delete(this.driver, testname);
 	}
 	
-	private boolean LogoutOfBlog(){
-		return logout.Logout(driver,"LogoutOfBlog");
+	private boolean LogoutOfBlog(String testname){
+		return logout.Logout(driver,testname);
 	}
 	
 
