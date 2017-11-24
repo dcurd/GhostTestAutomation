@@ -21,6 +21,9 @@ public class LogoutOfBlog extends TestAgent {
 	public boolean Logout(WebDriver driver,String testname){
 		try{
 		this.driver=driver;
+		this.driver.get(init.GetSignedInUrl());
+		this.driver.navigate().refresh();
+		Sleep(2000);
 		List<WebElement>listOfElements=this.driver.findElements(By.cssSelector("header"));
 		
 		for(WebElement e : listOfElements){

@@ -23,12 +23,14 @@ public class TestAgent {
 		}
 	}
 	
-	public boolean GoToBlogPostPageCss(WebDriver driver,String css,String itemtocheck){
+	public boolean GoToBlogPostPageCss(WebDriver driver,String css,String itemtocheck,String testname){
 		Sleep(2000);
 		try{
 		this.driver=driver;
 		this.driver.get(init.GetBlogPostUrl());
-		return this.driver.findElement(By.cssSelector(css)).getText().contains(itemtocheck);
+		this.driver.navigate().refresh();
+		Sleep(2000);
+		return RegisterResult(this.driver.findElement(By.cssSelector(css)).getText().contains(itemtocheck),testname);
 		}catch(WebDriverException e){
 			e.printStackTrace();
 			return false;
@@ -36,12 +38,27 @@ public class TestAgent {
 		
 		
 	}
-	public boolean GoToBlogPostPageCss(WebDriver driver,String css,String image,String itemtocheck){
+	public boolean GoToBlogPostPageCssText(WebDriver driver,String css,String value,String itemtocheck,String testname){
 		Sleep(2000);
 		try{
 		this.driver=driver;
 		this.driver.get(init.GetBlogPostUrl());
-		return this.driver.findElement(By.cssSelector(css)).getCssValue(image).contains(itemtocheck);
+		this.driver.navigate().refresh();
+		Sleep(2000);
+		return RegisterResult(this.driver.findElement(By.cssSelector(css)).getText().contains(itemtocheck),testname);
+		}catch(WebDriverException e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public boolean GoToBlogPostPageCss(WebDriver driver,String css,String value,String itemtocheck,String testname){
+		Sleep(2000);
+		try{
+		this.driver=driver;
+		this.driver.get(init.GetBlogPostUrl());
+		this.driver.navigate().refresh();
+		Sleep(2000);
+		return RegisterResult(this.driver.findElement(By.cssSelector(css)).getCssValue(value).contains(itemtocheck),testname);
 		}catch(WebDriverException e){
 			e.printStackTrace();
 			return false;
@@ -49,12 +66,13 @@ public class TestAgent {
 		
 		
 	}
-	public boolean GoToBlogPostPageTag(WebDriver driver,String tag,String itemtocheck){
+	public boolean GoToBlogPostPageTag(WebDriver driver,String tag,String itemtocheck,String testname){
 		Sleep(2000);
 		try{
 		this.driver=driver;
 		this.driver.get(init.GetBlogPostUrl());
-		return this.driver.findElement(By.tagName(tag)).getText().equals(itemtocheck);
+		this.driver.navigate().refresh();
+		return RegisterResult(this.driver.findElement(By.tagName(tag)).getText().equals(itemtocheck),testname);
 		}catch(WebDriverException e){
 			e.printStackTrace();
 			return false;

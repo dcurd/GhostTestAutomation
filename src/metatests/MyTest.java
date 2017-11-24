@@ -36,22 +36,35 @@ public class MyTest {
 	}
 	
 	private boolean ListOfTests(String testname){
-		switch(testname){
-		case "ConfirmBlog": return ConfirmBlog(testname);
-		case "GoToSignInPage": return GoToSignInPage(testname);
-		case "CreatePost": return CreatePost(testname);
-		case "EditPost": EditPost(testname); return true;
-		case "AddHtmlToPost": AddHtmlToPost(testname); return true;
-		case "AddImageToPost": AddImageToPost(testname); return true;
-		case "AddMarkupsToPost": AddMarkupsToPost(testname);return true;
-		case "DeletePost": return DeletePost(testname) ;
-		case "LogoutOfBlog": LogoutOfBlog(testname);
-		                     return false;
 		
-		}
-		return false;
+			if(testname.contains("Edit")){
+				ListOfEditTests(testname);
+			}else{
+			switch(testname){
+			case "ConfirmBlog": return ConfirmBlog(testname);
+			case "GoToSignInPage": return GoToSignInPage(testname);
+			case "CreatePost": return CreatePost(testname);
+			case "DeletePost": return DeletePost(testname) ;
+			case "LogoutOfBlog": LogoutOfBlog(testname);  return false;			
+			}
+			}
+		
+		return true;
 	}
 	
+	private void ListOfEditTests(String testname){
+		if(init.GetTestResults().get("CreatePost")){
+		switch(testname){
+		case "EditPost": EditPost(testname); break; 
+		case "EditHtmlToPost": AddHtmlToPost(testname); break; 
+		case "EditImageToPost": AddImageToPost(testname); break; 
+		case "EditMarkupsToPost": AddMarkupsToPost(testname);break; 
+		case "EditTagToPost": AddTagToPost(testname);break; 
+		}
+		}
+	}
+	
+		
 	private void LoadTests(){
 		test.add("ConfirmBlog");
 		init.AddToResults("ConfirmBlog", false);
@@ -61,12 +74,14 @@ public class MyTest {
 		init.AddToResults("CreatePost", false);
 		test.add("EditPost");
 		init.AddToResults("EditPost", false);
-		test.add("AddHtmlToPost");
-		init.AddToResults("AddHtmlToPost", false);
-		test.add("AddImageToPost");
-		init.AddToResults("AddImageToPost", false);
-		test.add("AddMarkupsToPost");
-		init.AddToResults("AddMarkupsToPost", false);
+		test.add("EditHtmlToPost");
+		init.AddToResults("EditHtmlToPost", false);
+		test.add("EditImageToPost");
+		init.AddToResults("EditImageToPost", false);
+		test.add("EditMarkupsToPost");
+		init.AddToResults("EditMarkupsToPost", false);
+		test.add("EditTagToPost");
+		init.AddToResults("EditTagToPost", false);
 		test.add("DeletePost");
 		init.AddToResults("DeletePost", false);
 		test.add("LogoutOfBlog");
@@ -105,12 +120,21 @@ public class MyTest {
 		
 	}
 	
+	private boolean AddTagToPost(String testname){
+		return edit.EditAddTag(this.driver, testname);
+		
+	}
+	
 	private boolean DeletePost(String testname){
-		return delete.Delete(this.driver, testname);
+		if(!init.GetTestResults().get("CreatePost")){
+			return false;
+		}else{
+			return delete.Delete(this.driver, testname);
+		}
 	}
 	
 	private boolean LogoutOfBlog(String testname){
-		return logout.Logout(driver,testname);
+ 		return logout.Logout(driver,testname);
 	}
 	
 

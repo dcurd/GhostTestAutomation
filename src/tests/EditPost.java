@@ -15,13 +15,12 @@ public class EditPost extends TestAgent {
 	
 	public boolean Edit(WebDriver driver, String testname){
 		try{
-		//post-content
 		this.driver=driver;
 		this.driver.findElement(By.cssSelector("textarea")).clear();
 		this.driver.findElement(By.cssSelector("textarea")).click();
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(init.GetEdit());		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
-		return GoToBlogPostPageCss(driver,".post-content",init.GetEdit());
+		return GoToBlogPostPageCss(this.driver,".post-content",init.GetEdit(),testname);
 		}catch(WebDriverException e){
 			e.printStackTrace();
 			return false;
@@ -30,7 +29,6 @@ public class EditPost extends TestAgent {
 	
 	public boolean EditHtml(WebDriver driver, String testname){
 		try{
-			//type bestcompany
 		this.driver=driver;
 		GoToWorkingUrl(this.driver);
 		this.driver.findElement(By.cssSelector("textarea")).clear();
@@ -38,7 +36,8 @@ public class EditPost extends TestAgent {
 		init.SetHtml(init.GetHtml().replace("%%%%", init.GetHtmlName()));
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(init.GetHtml());		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
-		return RegisterResult(GoToBlogPostPageCss(this.driver,".post-content","text",init.GetHtmlName()),testname);
+		Sleep(2000);
+		return GoToBlogPostPageCssText(this.driver,".post-content","text",init.GetHtmlName(),testname);
 	}catch(WebDriverException e){
 		e.printStackTrace();
 		return false;
@@ -59,7 +58,7 @@ public class EditPost extends TestAgent {
 		this.driver.findElement(By.cssSelector(".btn.btn-blue.gh-input")).click();
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
-		return RegisterResult(GoToBlogPostPageCss(this.driver,".main-header.post-head","background-image",init.GetImage()),testname);
+		return GoToBlogPostPageCss(this.driver,".main-header.post-head","background-image",init.GetImage(),testname);
 		}catch(WebDriverException e){
 			e.printStackTrace();
 			return false;
@@ -76,11 +75,38 @@ public class EditPost extends TestAgent {
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys("~~"+init.GetMarkdown()+"~~");		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
-		return RegisterResult(GoToBlogPostPageTag(driver,"del",init.GetMarkdown()),testname);
+		return GoToBlogPostPageTag(driver,"del",init.GetMarkdown(),testname);
 	}catch(WebDriverException e){
 		e.printStackTrace();
 		return false;
 	}
 	}
 
+	public boolean EditAddTag(WebDriver driver,String testname){
+		try{
+			//style="background-image: url(http://www.azquotes.com/picture-quotes/quote-the-place-god-calls-you-to-is-the-place-where-your-deep-gladness-and-the-world-s-deep-frederick-buechner-37-96-31.jpg)"
+			this.driver=driver;
+			GoToWorkingUrl(this.driver);
+			this.driver.findElement(By.cssSelector("textarea")).clear();
+			this.driver.findElement(By.cssSelector("textarea")).click();
+			this.driver.findElement(By.cssSelector(".post-settings")).click();
+			Sleep(1000);
+			this.driver.findElement(By.id("tag-input-selectized")).click();
+			this.driver.findElement(By.id("tag-input-selectized")).sendKeys(init.GetTag());
+			this.driver.findElement(By.id("tag-input-selectized")).sendKeys(Keys.ENTER);
+			this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
+			this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
+			this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
+			return GoToBlogPostPageCss(this.driver,".post-meta",init.GetTag(),testname);
+			}catch(WebDriverException e){
+				e.printStackTrace();
+				return false;
+			}
+	}
+	public boolean UnpublishPost(WebDriver driver,String testname){
+		return true;
+	}
+	public boolean RepublishPost(WebDriver driver,String testname){
+		return true;
+	}
 }

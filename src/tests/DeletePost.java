@@ -24,7 +24,14 @@ public class DeletePost extends TestAgent {
 			Sleep(1000);
 			this.driver.findElement(By.cssSelector(".btn.btn-red.ember-view")).click();
 			Sleep(2000);
-			return RegisterResult(!this.driver.getCurrentUrl().contains("editor"),testname);
+			//error-content error-404 js-error-container
+			if(!this.driver.getCurrentUrl().contains("editor")){
+				return GoToBlogPostPageCss(this.driver,".error-code","404",testname);
+				
+			}else{
+				return false;
+			}
+			//return RegisterResult(!this.driver.getCurrentUrl().contains("editor"),testname);
 			
 			
 		}catch(WebDriverException e){

@@ -26,6 +26,7 @@ public class TestAutomationGlobalInit {
 	String edit="";
 	String markdown="";
 	String htmlname="";
+	String tag="";
 	Properties props = new Properties();
 	private static TestAutomationGlobalInit instance =null;
 	DBUtils dbUtils=DBUtils.getInstance();
@@ -85,6 +86,7 @@ public class TestAutomationGlobalInit {
 		SetEdit(props.getProperty("Selenium-SampleEditPost"));
 		SetMarkdown(props.getProperty("Selenium-Markup"));
 		SetHtmlName(props.getProperty("Selenium-SampleHtmlName"));
+		SetTag(props.getProperty("Selenium-Tag"));
 	}
 	
 	public Map<String,Boolean> GetTestResults(){
@@ -98,6 +100,14 @@ public class TestAutomationGlobalInit {
 	
 	public void AddToResults(String key, Boolean value){
 		testResults.put(key, value);
+	}
+	
+	public String GetTag(){
+		return this.tag;
+	}
+	
+	public void SetTag(String tag){
+		this.tag=tag;
 	}
 	
 	public String GetMarkdown(){
@@ -128,7 +138,7 @@ public class TestAutomationGlobalInit {
 		return this.htmlname;
 	}
 	
-	public void SetHtmlName(String htmlnaem){
+	public void SetHtmlName(String htmlname){
 		this.htmlname=htmlname;
 	}
 	
