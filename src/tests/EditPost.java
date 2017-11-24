@@ -16,6 +16,7 @@ public class EditPost extends TestAgent {
 	public boolean Edit(WebDriver driver, String testname){
 		try{
 		this.driver=driver;
+		GoToWorkingUrl(this.driver);
 		this.driver.findElement(By.cssSelector("textarea")).clear();
 		this.driver.findElement(By.cssSelector("textarea")).click();
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(init.GetEdit());		
@@ -37,7 +38,7 @@ public class EditPost extends TestAgent {
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(init.GetHtml());		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
 		Sleep(2000);
-		return GoToBlogPostPageCssText(this.driver,".post-content","text",init.GetHtmlName(),testname);
+		return GoToBlogPostPageCssText(this.driver,".post-content",init.GetHtmlName(),testname);
 	}catch(WebDriverException e){
 		e.printStackTrace();
 		return false;
@@ -46,7 +47,6 @@ public class EditPost extends TestAgent {
 	
 	public boolean EditImage(WebDriver driver, String testname){
 		try{
-		//style="background-image: url(http://www.azquotes.com/picture-quotes/quote-the-place-god-calls-you-to-is-the-place-where-your-deep-gladness-and-the-world-s-deep-frederick-buechner-37-96-31.jpg)"
 		this.driver=driver;
 		GoToWorkingUrl(this.driver);
 		this.driver.findElement(By.cssSelector("textarea")).clear();
@@ -67,7 +67,6 @@ public class EditPost extends TestAgent {
 	
 	public boolean EditMarkup(WebDriver driver, String testname){
 	try{
-		//del tag
 		this.driver=driver;
 		GoToWorkingUrl(this.driver);
 		this.driver.findElement(By.cssSelector("textarea")).clear();
@@ -84,7 +83,6 @@ public class EditPost extends TestAgent {
 
 	public boolean EditAddTag(WebDriver driver,String testname){
 		try{
-			//style="background-image: url(http://www.azquotes.com/picture-quotes/quote-the-place-god-calls-you-to-is-the-place-where-your-deep-gladness-and-the-world-s-deep-frederick-buechner-37-96-31.jpg)"
 			this.driver=driver;
 			GoToWorkingUrl(this.driver);
 			this.driver.findElement(By.cssSelector("textarea")).clear();
@@ -104,9 +102,34 @@ public class EditPost extends TestAgent {
 			}
 	}
 	public boolean UnpublishPost(WebDriver driver,String testname){
-		return true;
+		this.driver=driver;
+		GoToWorkingUrl(this.driver);
+		try{
+			this.driver.findElement(By.cssSelector(".btn.btn-sm.btn-blue.dropdown-toggle.up.ember-view.closed")).click();
+			this.driver.findElement(By.cssSelector(".post-save-draft")).click();
+			Sleep(1000);
+			this.driver.findElement(By.cssSelector(".btn.btn-red.ember-view")).click();
+			Sleep(2000);
+			return GoToBlogPostPageCss(this.driver,".error-code","404",testname);
+				
+		}catch(WebDriverException e){
+				e.printStackTrace();
+				return false;
+			}
 	}
-	public boolean RepublishPost(WebDriver driver,String testname){
-		return true;
+	public boolean RepublishPost(WebDriver driver,String testname){		
+		this.driver=driver;
+		GoToWorkingUrl(this.driver);
+		try{
+			this.driver.findElement(By.cssSelector(".btn.btn-sm.btn-blue.dropdown-toggle.up.ember-view.closed")).click();
+			this.driver.findElement(By.className("post-save-publish ")).click();			
+			this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-red.ember-view")).click();
+			Sleep(2000);
+			return GoToBlogPostPageCssText(this.driver,".post-title",init.GetHeader(),testname);
+				
+		}catch(WebDriverException e){
+				e.printStackTrace();
+				return false;
+			}
 	}
 }

@@ -37,26 +37,11 @@ public class Authentication extends TestAgent {
 	}
 	
 	private WebElement GetLoginElement(){
-		List<WebElement>listOfElements=driver.findElements(By.cssSelector("input"));
-		WebElement login = null;
-		for(WebElement e : listOfElements){
-			if(e.getAttribute("type")!=null && e.getAttribute("type").contains("email")){
-				login=e;
-				break;
-			}
-		}
-		return login;
+		return this.driver.findElement(By.cssSelector(".email.ember-view.gh-input"));
+		
 	}
 	private WebElement GetPasswordElement(){
-		List<WebElement>listOfElements=driver.findElements(By.cssSelector("input"));
-		WebElement password = null;
-		for(WebElement e : listOfElements){
-			if(e.getAttribute("type")!=null && e.getAttribute("type").contains("password")){
-				password=e;
-				break;
-			}
-		}
-		return password;
+		return this.driver.findElement(By.cssSelector(".password.ember-view.gh-input"));
 	}
 
 	public static void main(String[] args) {

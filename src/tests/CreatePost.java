@@ -34,7 +34,9 @@ public class CreatePost extends TestAgent{
 			this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
 			init.SetWorkingUrl(this.driver.getCurrentUrl());
 			Sleep(2000);
-			return RegisterResult(this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).getText().equals("UPDATE POST"),testname);
+			//post-title
+			return GoToBlogPostPageCssText(this.driver,".post-title",init.GetHeader(),testname);
+			//return RegisterResult(this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).getText().equals("UPDATE POST"),testname);
 			
 			
 		}catch(WebDriverException e){

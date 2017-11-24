@@ -38,7 +38,7 @@ public class TestAgent {
 		
 		
 	}
-	public boolean GoToBlogPostPageCssText(WebDriver driver,String css,String value,String itemtocheck,String testname){
+	public boolean GoToBlogPostPageCssText(WebDriver driver,String css,String itemtocheck,String testname){
 		Sleep(2000);
 		try{
 		this.driver=driver;

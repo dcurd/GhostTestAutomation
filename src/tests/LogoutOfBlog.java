@@ -24,21 +24,16 @@ public class LogoutOfBlog extends TestAgent {
 		this.driver.get(init.GetSignedInUrl());
 		this.driver.navigate().refresh();
 		Sleep(2000);
-		List<WebElement>listOfElements=this.driver.findElements(By.cssSelector("header"));
+		this.driver.findElement(By.cssSelector(".gh-nav-menu.ember-view.closed")).click();
+		this.driver.findElement(By.xpath("//a[@href='/ghost/signout/']")).click();
+		Sleep(2000);
+		return RegisterResult(driver.getCurrentUrl().contains(init.GetSignInUrl()),testname);
 		
-		for(WebElement e : listOfElements){
-			if(e.getAttribute("role")!=null && e.getAttribute("role").contains("button")){
-				e.click();
-				Sleep(2000);
-				this.driver.findElement(By.xpath("//a[@href='/ghost/signout/']")).click();
-				Sleep(2000);
-				break;
-			}
-		}
 		}catch(WebDriverException e){
 			e.printStackTrace();
+			return false;
 		}
-		return RegisterResult(driver.getCurrentUrl().contains(init.GetSignInUrl()),testname);
+		
 		
 		
 		

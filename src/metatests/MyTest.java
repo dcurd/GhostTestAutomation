@@ -44,6 +44,8 @@ public class MyTest {
 			case "ConfirmBlog": return ConfirmBlog(testname);
 			case "GoToSignInPage": return GoToSignInPage(testname);
 			case "CreatePost": return CreatePost(testname);
+			case "UnpublishPost": return UnpublishPost(testname);
+			case "RepublishPost": return RepublishPost(testname);
 			case "DeletePost": return DeletePost(testname) ;
 			case "LogoutOfBlog": LogoutOfBlog(testname);  return false;			
 			}
@@ -82,6 +84,10 @@ public class MyTest {
 		init.AddToResults("EditMarkupsToPost", false);
 		test.add("EditTagToPost");
 		init.AddToResults("EditTagToPost", false);
+		test.add("UnpublishPost");
+		init.AddToResults("UnpublishPost", false);
+		test.add("RepublishPost");
+		init.AddToResults("RepublishPost", false);
 		test.add("DeletePost");
 		init.AddToResults("DeletePost", false);
 		test.add("LogoutOfBlog");
@@ -122,6 +128,16 @@ public class MyTest {
 	
 	private boolean AddTagToPost(String testname){
 		return edit.EditAddTag(this.driver, testname);
+		
+	}
+	
+	private boolean UnpublishPost(String testname){
+		return edit.UnpublishPost(this.driver, testname);
+		
+	}
+	
+	private boolean RepublishPost(String testname){
+		return edit.RepublishPost(this.driver, testname);
 		
 	}
 	
