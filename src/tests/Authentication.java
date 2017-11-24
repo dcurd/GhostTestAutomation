@@ -14,13 +14,12 @@ import utilities.TestAutomationGlobalInit;
 public class Authentication extends TestAgent {
 
 	
-	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
-	
+		
 	public Authentication() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void Login(WebDriver driver,String testname){
+	public boolean Login(WebDriver driver,String testname){
 		try{
 		this.driver=driver;
 		driver.get(init.GetSignInUrl());
@@ -33,7 +32,7 @@ public class Authentication extends TestAgent {
 		}catch(WebDriverException e){
 			e.printStackTrace();
 		}
-		RegisterResult(!driver.getCurrentUrl().contains("signin"),testname);
+		return RegisterResult(!driver.getCurrentUrl().contains("signin"),testname);
 		
 	}
 	

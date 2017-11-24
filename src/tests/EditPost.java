@@ -9,37 +9,39 @@ import utilities.TestAutomationGlobalInit;
 
 public class EditPost extends TestAgent {
 	
-	WebDriver driver;
-	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	public EditPost() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void Edit(WebDriver driver, String testname){
+	public boolean Edit(WebDriver driver, String testname){
 		try{
 		this.driver=driver;
 		this.driver.findElement(By.cssSelector("textarea")).clear();
 		this.driver.findElement(By.cssSelector("textarea")).click();
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys("HI");		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
+		return true;
 		}catch(WebDriverException e){
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
-	public void EditHtml(WebDriver driver, String testname){
+	public boolean EditHtml(WebDriver driver, String testname){
 		try{
 		this.driver=driver;
 		this.driver.findElement(By.cssSelector("textarea")).clear();
 		this.driver.findElement(By.cssSelector("textarea")).click();
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(init.GetHtml());		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
+		return true;
 	}catch(WebDriverException e){
 		e.printStackTrace();
+		return false;
 	}
 	}
 	
-	public void EditImage(WebDriver driver, String testname){
+	public boolean EditImage(WebDriver driver, String testname){
 		try{
 		this.driver=driver;
 		this.driver.findElement(By.cssSelector("textarea")).clear();
@@ -51,20 +53,24 @@ public class EditPost extends TestAgent {
 		this.driver.findElement(By.cssSelector(".btn.btn-blue.gh-input")).click();
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
+		return true;
 		}catch(WebDriverException e){
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
-	public void EditMarkup(WebDriver driver, String testname){
+	public boolean EditMarkup(WebDriver driver, String testname){
 	try{
 		this.driver=driver;
 		this.driver.findElement(By.cssSelector("textarea")).clear();
 		this.driver.findElement(By.cssSelector("textarea")).click();
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys("HI");		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
+		return true;
 	}catch(WebDriverException e){
 		e.printStackTrace();
+		return false;
 	}
 	}
 

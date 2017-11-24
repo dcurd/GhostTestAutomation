@@ -84,6 +84,11 @@ public class TestAutomationGlobalInit {
 		return this.testResults;
 	}
 	
+	public boolean SetResult(String key, Boolean value){
+		testResults.put(key, value);
+		return value;
+	}
+	
 	public void AddToResults(String key, Boolean value){
 		testResults.put(key, value);
 	}

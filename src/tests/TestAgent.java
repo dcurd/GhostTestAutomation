@@ -7,9 +7,10 @@ import utilities.TestAutomationGlobalInit;
 public class TestAgent {
 
 	WebDriver driver;
+	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	public TestAgent() {
 	}
-	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
+	
 	
 	public void Sleep(long value){
 		try {
@@ -20,9 +21,9 @@ public class TestAgent {
 		}
 	}
 	
-	public void RegisterResult(Boolean result, String testname){
+	public boolean RegisterResult(Boolean result, String testname){
 		System.out.println(result);
-		init.AddToResults(testname, result);		
+		return init.SetResult(testname, result);		
 	}
 
 	public static void main(String[] args) {

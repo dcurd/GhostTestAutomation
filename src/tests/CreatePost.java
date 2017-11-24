@@ -13,13 +13,11 @@ import utilities.TestAutomationGlobalInit;
 
 public class CreatePost extends TestAgent{
 
-	WebDriver driver;
-	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	public CreatePost() {
 		// TODO Auto-generated constructor stub
 	}
 	///ghost/editor/
-	public void Create(WebDriver driver,String testname){
+	public boolean Create(WebDriver driver,String testname){
 		this.driver=driver;
 		try{
 			init.SetWorkingUrl(this.driver.getCurrentUrl());
@@ -32,13 +30,17 @@ public class CreatePost extends TestAgent{
 			this.driver.findElement(By.className("post-save-publish ")).click();
 			
 			this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-red.ember-view")).click();
-			//btn btn-sm js-publish-button btn-blue  ember-view
+			this.driver.findElement(By.cssSelector(".post-settings")).click();
+			//ember-view ghost-url-preview description
+			this.driver.findElement(By.cssSelector(".ember-view.ghost-url-preview.description")).getText(); 
+			this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
 			Sleep(2000);
-			RegisterResult(this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).getText().equals("UPDATE POST"),testname);
-			Sleep(2000);
+			return RegisterResult(this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).getText().equals("UPDATE POST"),testname);
+			
 			
 		}catch(WebDriverException e){
 				e.printStackTrace();
+				return false;
 			}
 	}
 	

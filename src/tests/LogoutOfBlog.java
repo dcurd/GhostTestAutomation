@@ -13,21 +13,18 @@ import utilities.TestAutomationGlobalInit;
 
 public class LogoutOfBlog extends TestAgent {
 
-	WebElement logout;
-	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	
 	public LogoutOfBlog() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void Logout(WebDriver driver,String testname){
+	public boolean Logout(WebDriver driver,String testname){
 		try{
 		this.driver=driver;
 		List<WebElement>listOfElements=this.driver.findElements(By.cssSelector("header"));
 		
 		for(WebElement e : listOfElements){
 			if(e.getAttribute("role")!=null && e.getAttribute("role").contains("button")){
-				this.logout=e;
 				e.click();
 				Sleep(2000);
 				this.driver.findElement(By.xpath("//a[@href='/ghost/signout/']")).click();
@@ -38,7 +35,7 @@ public class LogoutOfBlog extends TestAgent {
 		}catch(WebDriverException e){
 			e.printStackTrace();
 		}
-		RegisterResult(driver.getCurrentUrl().contains(init.GetSignInUrl()),testname);
+		return RegisterResult(driver.getCurrentUrl().contains(init.GetSignInUrl()),testname);
 		
 		
 		

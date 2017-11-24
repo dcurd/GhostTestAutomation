@@ -9,14 +9,12 @@ import utilities.TestAutomationGlobalInit;
 
 public class DeletePost extends TestAgent {
 
-	WebDriver driver;
-	TestAutomationGlobalInit init= TestAutomationGlobalInit.getInstance();
 	
 	public DeletePost() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void Delete(WebDriver driver,String testname){
+	public boolean Delete(WebDriver driver,String testname){
 		this.driver=driver;
 		try{
 			//dropdown-menu dropdown-triangle-bottom-right
@@ -25,11 +23,12 @@ public class DeletePost extends TestAgent {
 			Sleep(1000);
 			this.driver.findElement(By.cssSelector(".btn.btn-red.ember-view")).click();
 			Sleep(2000);
-			RegisterResult(!this.driver.getCurrentUrl().contains("editor"),testname);
+			return RegisterResult(!this.driver.getCurrentUrl().contains("editor"),testname);
 			
 			
 		}catch(WebDriverException e){
 				e.printStackTrace();
+				return false;
 			}
 	}
 
