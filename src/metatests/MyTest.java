@@ -28,11 +28,16 @@ public class MyTest {
 	}
 	
 	public void run(){
+		try{
 		while(result){
 			result= ListOfTests(test.remove(0));
 		}
-		
-		driver.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			driver.close();
+		}
 	}
 	
 	private boolean ListOfTests(String testname){

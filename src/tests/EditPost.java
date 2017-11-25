@@ -74,6 +74,7 @@ public class EditPost extends TestAgent {
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys(Keys.ESCAPE);
 		this.driver.findElement(By.cssSelector("textarea")).sendKeys("~~"+init.GetMarkdown()+"~~");		
 		this.driver.findElement(By.cssSelector(".btn.btn-sm.js-publish-button.btn-blue.ember-view")).click();
+		Sleep(2000);
 		return GoToBlogPostPageTag(driver,"del",init.GetMarkdown(),testname);
 	}catch(WebDriverException e){
 		e.printStackTrace();
